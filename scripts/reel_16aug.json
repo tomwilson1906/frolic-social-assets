@@ -1,0 +1,12 @@
+{
+  "name": "frolic-reel-side-chats",
+  "cards": [
+    {"kind":"hook","kicker":"Hens planning, week three","h1":"The group chat has <span class=\"pk\">three side chats</span>","sub":"None of them have booked anything."},
+    {"kind":"point","lead":"The main chat","text":"Fourteen people. Everyone is <span class=\"mk\">keen for whatever</span>."},
+    {"kind":"point","lead":"The one without the bride","text":"Where the dates actually get discussed, and then never confirmed with anyone."},
+    {"kind":"point","lead":"The chat of two","text":"Where someone quietly admits the <span class=\"mk\">Airbnb is out of budget</span> and says nothing in the big one."},
+    {"kind":"list","title":"What actually fixes it","rows":["One link instead of one more chat","Options to pick from, not an open question","Everyone seeing the same price at the same time"]},
+    {"kind":"point","text":"You look like you had it sorted the whole time. <span class=\"mk\">The app did the thinking.</span>"},
+    {"kind":"cta","title":"Plan it. Split it. Done.","sub":"Hens and bucks, sorted in Australia."}
+  ]
+}

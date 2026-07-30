@@ -1,0 +1,44 @@
+{
+  "name": "frolic-reel-how-far-out",
+  "cards": [
+    {
+      "kind": "hook",
+      "kicker": "Just been asked to plan a hens",
+      "h1": "How far out do you <span class=\"pk\">actually</span> book?",
+      "sub": "The honest Australian timeline, in weeks."
+    },
+    {
+      "kind": "point",
+      "lead": "12 weeks out",
+      "text": "Lock the <span class=\"mk\">city and the weekend</span>. Nothing else can be booked until those two exist."
+    },
+    {
+      "kind": "list",
+      "title": "Then, in this order",
+      "rows": [
+        "10 weeks: headcount, with a per-head number attached",
+        "8 weeks: accommodation, it sells out first",
+        "6 weeks: collect the money once, not three times"
+      ]
+    },
+    {
+      "kind": "point",
+      "lead": "3 weeks out",
+      "text": "Confirm final numbers with every venue. Most of them still <span class=\"mk\">cost you</span> for anyone who pulls out after that."
+    },
+    {
+      "kind": "point",
+      "lead": "The week of",
+      "text": "One pinned message. Times, addresses, who is driving. That is the whole job."
+    },
+    {
+      "kind": "point",
+      "text": "Start at 12 weeks and you are choosing. Start at 6 and you are <span class=\"mk\">taking whatever is left</span>."
+    },
+    {
+      "kind": "cta",
+      "title": "Plan it. Split it. Done.",
+      "sub": "Hens and bucks, sorted in Australia."
+    }
+  ]
+}
