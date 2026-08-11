@@ -1,0 +1,14 @@
+{
+  "name": "venue-first-message",
+  "scheduled_date": "2026-08-27",
+  "pillar": "A - planning-first practical",
+  "cards": [
+    { "kind": "hook", "kicker": "HENS PLANNING", "h1": "Nobody tells you <span class=\"pk\">what to ask a venue</span>", "sub": "So here is the message." },
+    { "kind": "point", "lead": "Send this first", "text": "Hi, planning a hens for <span class=\"mk\">12 on Sat 18 Oct</span>. Do you take groups that size?" },
+    { "kind": "list", "title": "Then ask these three", "rows": ["Is there a minimum spend?", "Do we pre-order food, or order on the day?", "When do you need final numbers?"] },
+    { "kind": "point", "lead": "The one people forget", "text": "The <span class=\"mk\">final numbers date</span>. After it, anyone who drops out is still costed in." },
+    { "kind": "point", "lead": "And this", "text": "Is the deposit <span class=\"mk\">refundable?</span>" },
+    { "kind": "point", "lead": "Why it is worth it", "text": "Five answers and you can price the whole day <span class=\"mk\">per head</span>." },
+    { "kind": "cta", "title": "Frolic asks the right questions", "sub": "Hens and bucks planning, start to finish" }
+  ]
+}
