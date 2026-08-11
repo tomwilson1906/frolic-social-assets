@@ -1,0 +1,74 @@
+# MOVE THIS FILE TO .github/workflows/build-reel.yml
+#
+# It is parked here because the PAT the growth engine uses carries Contents:write only.
+# GitHub gates .github/workflows/** behind a separate "Workflows" permission, and that gate
+# is there for a good reason -- it is what stops a contents-only token from making CI execute
+# code. So this file is left for a human to place deliberately.
+#
+# Two ways to activate, either is fine:
+#   a) In the GitHub web UI, create .github/workflows/build-reel.yml and paste this file in.
+#   b) Edit the fine-grained PAT in app_config.github_assets_token and add
+#      Repository permissions -> Workflows -> Read and write. The growth engine will then
+#      place the file itself on its next run.
+#
+# After that, reels are hands-free again: the agent writes a spec into build/specs/,
+# this workflow builds the MP4 and commits it to reels/, and reels-autopost publishes it.
+
+name: build-reel
+on:
+  push:
+    paths: ['build/specs/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install renderer deps
+        working-directory: build
+        run: |
+          npm init -y >/dev/null
+          npm install playwright @fontsource/shrikhand @fontsource/karla
+          npx playwright install --with-deps chromium
+
+      - name: Build audio bed
+        working-directory: build
+        run: |
+          python3 -m pip install --quiet numpy
+          python3 audio.py bed.wav
+          ffmpeg -y -i bed.wav -c:a aac -b:a 160k bed.m4a
+
+      - name: Build any spec that has no MP4 yet
+        working-directory: build
+        run: |
+          set -e
+          for spec in specs/*.json; do
+            name=$(basename "$spec" .json)
+            out="../reels/frolic-reel-$name.mp4"
+            if [ -f "$out" ]; then echo "skip $name (already built)"; continue; fi
+            echo "building $name"
+            node make_reel.js "$spec" "cards/$name"
+            n=$(ls "cards/$name"/card_*.png | wc -l)
+            bash assemble.sh "cards/$name" "$n" bed.m4a "$out"
+          done
+
+      - name: Commit built reels
+        run: |
+          git config user.name "frolic-ci"
+          git config user.email "ci@thefrolic.app"
+          git add reels/
+          if git diff --staged --quiet; then
+            echo "nothing new to commit"
+          else
+            git commit -m "ci: build reels from specs"
+            git push
+          fi
