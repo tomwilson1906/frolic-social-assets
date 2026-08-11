@@ -1,0 +1,14 @@
+{
+  "name": "date-poll-v2",
+  "scheduled_date": "2026-08-16",
+  "pillar": "C - planning-chaos humour",
+  "cards": [
+    { "kind": "hook", "kicker": "HENS PLANNING", "h1": "You asked the group chat to pick a <span class=\"pk\">date</span>", "sub": "That was five weeks ago." },
+    { "kind": "point", "lead": "Day 1", "text": "Six people reply <span class=\"mk\">any weekend suits me</span>" },
+    { "kind": "point", "lead": "Day 9", "text": "Three of those six now have something on. All different weekends." },
+    { "kind": "point", "lead": "Day 23", "text": "Someone makes a poll. <span class=\"mk\">Four people open it.</span> Nobody votes." },
+    { "kind": "list", "title": "What actually works", "rows": ["Put up three dates, not a blank box", "Give the group 48 hours to vote", "Book it before anyone reopens it"] },
+    { "kind": "point", "lead": "The whole trick", "text": "A group chat can <span class=\"mk\">react</span> to options. It cannot <span class=\"mk\">produce</span> one." },
+    { "kind": "cta", "title": "Frolic makes the call for you", "sub": "Hens and bucks planning, start to finish" }
+  ]
+}
