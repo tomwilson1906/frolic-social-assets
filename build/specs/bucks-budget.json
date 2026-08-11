@@ -1,0 +1,14 @@
+{
+  "name": "bucks-budget",
+  "scheduled_date": "2026-08-30",
+  "pillar": "A - planning-first practical, bucks idea-led",
+  "cards": [
+    { "kind": "hook", "kicker": "BUCKS PLANNING", "h1": "What a bucks weekend <span class=\"pk\">actually costs</span>", "sub": "Per head, real numbers." },
+    { "kind": "point", "lead": "A local day", "text": "Lunch, an activity, a booked table after - <span class=\"mk\">$120 to $170pp</span>" },
+    { "kind": "point", "lead": "A proper night", "text": "Add a bar tab and a driver - <span class=\"mk\">$200 to $260pp</span>" },
+    { "kind": "point", "lead": "A weekend away", "text": "House split across the group, boat or golf, dinner booked - <span class=\"mk\">$320 to $420pp</span>" },
+    { "kind": "list", "title": "What moves the number", "rows": ["Accommodation. Book it first, it sells out", "Anything with a minimum spend", "The groom-s share, split across everyone else"] },
+    { "kind": "point", "lead": "Say it early", "text": "People say yes to a <span class=\"mk\">number</span>. They do not say yes to a vibe." },
+    { "kind": "cta", "title": "Frolic prices it before you book", "sub": "Hens and bucks planning, start to finish" }
+  ]
+}
