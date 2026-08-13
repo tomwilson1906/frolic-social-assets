@@ -1,0 +1,65 @@
+# Builds any reel spec in build/specs/ that has no MP4 in reels/ yet, and commits
+# the result. Source of truth for this file is build/build-reel.workflow.yml.
+#
+# The loop: an agent writes a spec via the gh-commit edge function -> that push fires
+# this workflow -> the MP4 lands in reels/ -> reels-autopost ingests it into Supabase
+# storage and publishes to Instagram. No human step anywhere.
+
+name: build-reel
+on:
+  push:
+    paths: ['build/specs/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install renderer deps
+        working-directory: build
+        run: |
+          npm init -y >/dev/null
+          npm install playwright @fontsource/shrikhand @fontsource/karla
+          npx playwright install --with-deps chromium
+
+      - name: Build audio bed
+        working-directory: build
+        run: |
+          python3 -m pip install --quiet numpy
+          python3 audio.py bed.wav
+          ffmpeg -y -i bed.wav -c:a aac -b:a 160k bed.m4a
+
+      - name: Build any spec that has no MP4 yet
+        working-directory: build
+        run: |
+          set -e
+          for spec in specs/*.json; do
+            name=$(basename "$spec" .json)
+            out="../reels/frolic-reel-$name.mp4"
+            if [ -f "$out" ]; then echo "skip $name (already built)"; continue; fi
+            echo "building $name"
+            node make_reel.js "$spec" "cards/$name"
+            n=$(ls "cards/$name"/card_*.png | wc -l)
+            bash assemble.sh "cards/$name" "$n" bed.m4a "$out"
+          done
+
+      - name: Commit built reels
+        run: |
+          git config user.name "frolic-ci"
+          git config user.email "ci@thefrolic.app"
+          git add reels/
+          if git diff --staged --quiet; then
+            echo "nothing new to commit"
+          else
+            git commit -m "ci: build reels from specs"
+            git push
+          fi
