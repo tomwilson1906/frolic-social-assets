@@ -31,6 +31,17 @@ jobs:
           npm install playwright @fontsource/shrikhand @fontsource/karla
           npx playwright install --with-deps chromium
 
+      # ffmpeg is NOT preinstalled on GitHub's Ubuntu runners -- it is absent from both
+      # Ubuntu2404-Readme.md and Ubuntu2204-Readme.md in actions/runner-images, so changing
+      # `runs-on` does not help. Without this, `Build audio bed` dies on exit 127
+      # (run #1, 13 Aug 2026). Keep this in the workflow, not in audio.py: the growth
+      # engine's PAT is Contents-only and cannot touch .github/workflows/** by design.
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
+
       - name: Build audio bed
         working-directory: build
         run: |

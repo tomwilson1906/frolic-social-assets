@@ -1,1 +1,5 @@
 build-reel workflow activated 2026-08-14. Touching any file under build/specs/ fires CI.
+
+Run #1 (13 Aug 2026) failed at `Build audio bed` with exit 127: ffmpeg is not
+preinstalled on GitHub's Ubuntu runners. An `Install ffmpeg` step now runs before it.
+Rewritten 2026-08-14 to fire the first run with that step in place.
